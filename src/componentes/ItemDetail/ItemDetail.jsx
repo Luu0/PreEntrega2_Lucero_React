@@ -1,25 +1,28 @@
-// const ItemDetail = ({product})=>{
-//   console.log(product)
+import ItemCount from "../Counter/ItemCount"
 
-//   return(
-//     <div className="row">
-//       <h2>Vista de detalle</h2>
-//       <div className="col">
-//         <img className="w-25" src={product.i} alt="imagen"/>
+const ItemDetail = ({product})=>{
+
+  const onAdd = (count) => {
+    console.log('productos seleccionados :', count);
+  }
+
+  return(
+    <div className="row container w-50 text-center">
+      <h2>Vista de detalle</h2>
+      <div className="col">
+        <img className="w-25" src={product.imageUrl} alt="imagen"/>
         
-//         <div>
-//           <p>Nombre: {product.name}</p> 
-//           <p>Descripcién: {product.description}</p> 
-//           <p>Precio: {product. price}</p> 
-//           <p>Stock: {product.stock}</p> 
-//         </div>
-//       </div>
+        <div>
+          <p>Nombre: {product.name}</p> 
+          <p>Descripción: {product.description}</p> 
+          <p>Precio: {product. price}</p> 
+          <p>Stock: {product.stock}</p> 
+        </div>
+      </div>
 
-//       {/* <div className="col">
-//         <Itemcount initial = {1}/>
-//       </div> */}
-
-//     </div>
-//   )
-// }
-// export default ItemDetail
+      <ItemCount initial = {1} stock={product.stock} onAdd={onAdd}/>
+      
+    </div>
+  )
+}
+export default ItemDetail

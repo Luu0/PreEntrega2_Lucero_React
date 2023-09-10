@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { mFetch } from "../utils/mockfetch"
 
+
+
 const ItemListContainer = () => {
   
   const [products, setProduct] = useState([])
@@ -14,14 +16,14 @@ const ItemListContainer = () => {
   }, [])
   
   return (
-    <center>
-      <div className="row row-cols-4 container g-3 m-3">
+    <div className="d-flex justify-content-center">
+      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 container g-3 m-3">
         { loading ? <h2>Loading ...</h2> : products.map(product => 
         <div key={product.id} className="col">  
           <div className="card h-100">
             <div className="card-body">
               <img className="w-100 card-img-top" src={product.imageUrl} alt="imagen prenda"/>
-              <p>Description: {product.description}</p>
+              <p>{product.name}</p>
               <p>Precio: {product.price}</p>
             </div>
             <div className="card-footer">
@@ -31,7 +33,7 @@ const ItemListContainer = () => {
         </div>
         )}
       </div>
-    </center>
+    </div>
   )
 }
 export default ItemListContainer

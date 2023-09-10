@@ -12,19 +12,22 @@ const products = [ // simulamos una respuesta de una API
     {id: 11, name: 'Disco 20kg', price: 60000, stock: 80, description: 'Disco goma olimpico 20kg.', imageUrl: 'https://www.ksportslaserena.cl/cdn/shop/products/DiscoProBumber20kg_250x250@2x.png?v=1634931230'},
 ]
 
-export const mFetch  = () =>  new Promise((res,rej) => { // simular fetch
-    //acciones.
-    // const condition = true
-    setTimeout(()=>{
-        res(products);
-    },1000)
-
+export const mFetch = (pid) => new Promise ((res, rej) => {
+    // acciones
+    setTimeout(() => {
+      res(pid ? products.find(product => product.id === pid) : products) 
+    }, 2000);
+  
 })
 
-// if(pid){
+
+
+// export const mFetch  = () =>  new Promise((res,rej) => { // simular fetch
+//     //acciones.
+//     // const condition = true
 //     setTimeout(()=>{
-//         res(pid ? products.find(product=>product.id==pid):products)
-//     }, 3000)
-// }else{
-//     rej('Dinero NO devuelto - nunca más - olvidate')
-// }
+//         res(products);
+//     },1000)
+
+// })
+
