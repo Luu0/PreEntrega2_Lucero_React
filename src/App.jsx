@@ -1,4 +1,5 @@
 import { useState,useEffect } from 'react'
+import { BrowserRouter,Routes,Route } from 'react-router-dom'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -11,10 +12,15 @@ import ItemDetailContainer from './componentes/ItemDetailContainer/ItemDetailCoi
 function App() {
   return (
     <>
-    
-    <NavBar></NavBar>
-    <ItemListContainer/>   
-    <ItemDetailContainer/>
+    <BrowserRouter>
+      <NavBar/>
+      <Routes>
+        <Route path='/' element={<ItemListContainer/>}/>
+        <Route path='/category/:cid' element={<ItemListContainer/>}/>
+        
+        <Route path='/detalles/:pid' element={<ItemDetailContainer/>}/>
+      </Routes>
+    </BrowserRouter>
     </>
   )
 }

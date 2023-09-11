@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react"
 import ItemDetail from "../ItemDetail/ItemDetail"
 import { mFetch } from "../utils/mockfetch"
+import { useParams } from "react-router-dom"
 
 
 const ItemDetailContainer = () => {
     // api manejo de estados etc
     const [product, setProduct ] = useState({})
-
-
+    const { pid } = useParams()
+   
     useEffect(()=>{
         // llamada a la api
-        mFetch(10)
+        mFetch(Number(pid))
         .then(resp => setProduct(resp))
         .catch(err=> console.log(err))
-        // .finally(set loading)
     },[])
     return (
         <div className="d-flex justify-content-center">

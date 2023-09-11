@@ -7,7 +7,7 @@ const ItemDetail = ({product})=>{
   }
 
   return(
-    <div className="row container w-50 text-center">
+    <div className="row container w-50 text-center card-body m-4">
       <h2>Vista de detalle</h2>
       <div className="col">
         <img className="w-25" src={product.imageUrl} alt="imagen"/>
@@ -21,7 +21,6 @@ const ItemDetail = ({product})=>{
       </div>
 
       <ItemCount initial = {1} stock={product.stock} onAdd={onAdd}/>
-      
     </div>
   )
 }

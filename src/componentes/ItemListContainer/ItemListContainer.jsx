@@ -1,37 +1,35 @@
 import { useEffect, useState } from "react"
 import { mFetch } from "../utils/mockfetch"
-
-
+import { useParams } from "react-router-dom"
+import ItemList from "../ItemList/ItemList"
 
 const ItemListContainer = () => {
   
   const [products, setProduct] = useState([])
   const [ loading, setLoading ] = useState(true)
+  const {cid} = useParams()
   
   useEffect(()=>{
-    mFetch()
-    .then(respuesta => setProduct(respuesta))
-    .catch(err => console.log(err))
-    .finally(()=> setLoading(false))
-  }, [])
+    if(cid){
+      mFetch()
+      .then(respuesta => setProduct(respuesta.filter(product=>cid==product.category)))
+      .catch(err => console.log(err))
+      .finally(()=> setLoading(false))
+
+    }else{
+      mFetch()
+      .then(respuesta => setProduct(respuesta))
+      .catch(err => console.log(err))
+      .finally(()=> setLoading(false))
+    }
+  }, [cid])
   
   return (
     <div className="d-flex justify-content-center">
       <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 container g-3 m-3">
-        { loading ? <h2>Loading ...</h2> : products.map(product => 
-        <div key={product.id} className="col">  
-          <div className="card h-100">
-            <div className="card-body">
-              <img className="w-100 card-img-top" src={product.imageUrl} alt="imagen prenda"/>
-              <p>{product.name}</p>
-              <p>Precio: {product.price}</p>
-            </div>
-            <div className="card-footer">
-              <button className="btn btn-outline-dark w-100">Detalle</button>
-            </div>
-          </div> 
-        </div>
-        )}
+        { loading ? <h2>Loading ...</h2> : 
+          <ItemList product={products}/>
+        }
       </div>
     </div>
   )
